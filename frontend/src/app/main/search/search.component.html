@@ -1,0 +1,69 @@
+<div class="container">
+  <h2>Recherche de jeux</h2>
+  <form [formGroup]="searchListGame" (submit)="searchGame()">
+    <label for="title">Titre</label>
+    <input type="text" id="title" placeholder="Entrez un titre" formControlName="title" class="form-control" />
+
+    <button type="submit" id="btnSearch">RECHERCHER</button>
+  </form>
+
+  <!-- Afficher le titre recherché -->
+  <div *ngIf="searchedTitle">
+    <h3>Résultats de recherche pour : {{ searchedTitle }}</h3>
+  </div>
+
+  <!-- Affichage conditionnel des résultats -->
+  <div *ngIf="results && !loading">
+    <!-- Affichage des résultats -->
+    <div class="resultSearch" *ngFor="let result of results">
+      <p>{{ result.title }}</p>
+      <p>{{ result.studio }}</p>
+      <p>{{ result.date }}</p>
+    </div>
+
+    <!-- Message "Aucun résultat trouvé" -->
+    <div *ngIf="results.length === 0">
+      Aucun résultat trouvé.
+    </div>
+  </div>
+
+  <!-- Indicateur de chargement -->
+  <div *ngIf="loading">
+    Chargement en cours...
+  </div>
+
+  <!-- Affichage des erreurs -->
+  <div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+  </div>
+</div>
+
+<ngb-carousel>
+		<ng-template ngbSlide>
+			<div class="picsum-img-wrapper">
+				<img src="/assets/pict/alanWakeIIWallpaper.jpg" style="height: 650px; max-width: 1800px; display: block; margin: 10px auto" class="img-fluid w-100" alt="Random first slide" />
+			</div>
+			<div class="carousel-caption">
+				<h3>First slide label</h3>
+				<p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+			</div>
+		</ng-template>
+		<ng-template ngbSlide>
+			<div class="picsum-img-wrapper">
+				<img src="/assets/pict/cyberpunk2077Wallpaper.jpg" style="height: 650px; max-width: 1800px; display: block; margin: 10px auto" class="img-fluid w-100" alt="Random second slide" />
+			</div>
+			<div class="carousel-caption">
+				<h3>Second slide label</h3>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+			</div>
+		</ng-template>
+		<ng-template ngbSlide>
+			<div class="picsum-img-wrapper">
+				<img src="/assets/pict/dishonoredWallpaper.jpg" style="height: 650px; max-width: 1800px; display: block; margin: 10px auto" class="img-fluid w-100" alt="Random third slide" />
+			</div>
+			<div class="carousel-caption">
+				<h3>Third slide label</h3>
+				<p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+			</div>
+		</ng-template>
+</ngb-carousel>
